@@ -1,0 +1,16 @@
+{% if user.is_authenticated %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+<a href="{%  url 'polls:logout' %}">Log out</a>
+{% else %}
+<h1>You are not logged in!! Please login <a href="{%  url 'polls:index' %}">Here</a> </h1>
+{% endif %}

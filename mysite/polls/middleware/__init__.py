@@ -1,0 +1,1 @@
+from user_restrict import UserRestrictMiddleware

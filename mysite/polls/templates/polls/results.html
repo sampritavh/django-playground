@@ -1,0 +1,12 @@
+{% if user.is_authenticated %}
+<h1>{{ question.question_text }}</h1>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+{% else %}
+<h1>You are not logged in!! Please login <a href="{%  url 'polls:index' %}">Here</a> </h1>
+{% endif %}
