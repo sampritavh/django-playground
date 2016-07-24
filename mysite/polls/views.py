@@ -6,7 +6,7 @@ from django.contrib.auth import logout
 from django.template import loader
 
 # Create your views here.
-from .models import Choice, Question
+from .models import Choice, Question, Visitor
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -78,8 +78,12 @@ def process_login(request):
         return HttpResponse("Your username and password didn't match.")
 
 def logout_view(request):
+    visitor = Visitor.objects.filter(pupil=request.user)
+    print "deleting visitor object for {0}".format(visitor)
+    if visitor:
+        visitor.delete()
     logout(request)
     return (HttpResponse("You have been successfully logged out"))
 
 def no_multisession(request):
-    return (HttpResponse("Error: You are already logged in somewhere else!!!"))
+    return (HttpResponse("<h1>Error: You are already logged in somewhere else!!!</h1>"))

@@ -1,1 +1,2 @@
 from user_restrict import UserRestrictMiddleware
+from autologout import AutoLogout

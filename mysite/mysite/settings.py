@@ -44,10 +44,11 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'polls.middleware.user_restrict.UserRestrictMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'polls.middleware.user_restrict.UserRestrictMiddleware'
+    'polls.middleware.autologout.AutoLogout',
 ]
 # Handle session is not Json Serializable
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
